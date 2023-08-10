@@ -25,14 +25,8 @@ jobs:
         with:
           terraform_version: 1.5.5
 
-      - name: LS 1
-        run: find . -ls
-
       - name: Terraform Init
         run: terraform init
-
-      - name: LS 2
-        run: find . -ls
 
       - name: Terraform Validate
         run: terraform validate
