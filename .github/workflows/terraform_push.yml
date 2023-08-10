@@ -33,7 +33,11 @@ jobs:
 
       - name: Terraform Plan
         run: |
-          { terraform plan } >> $GITHUB_ENV
+          {
+            echo 'TFPLAN<<EOF'
+            terraform plan
+            echo EOF
+          } >> $GITHUB_ENV
 
       - name: Terraform Plan Output
         run: printenv TFPLAN
