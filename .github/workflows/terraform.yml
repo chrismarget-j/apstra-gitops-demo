@@ -20,6 +20,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
+      - name: Set up Terraform
+        uses: hashicorp/setup-terrform@633666f66e0061ca3b725c73b2ec20cd13a8fdd1 # v2.0.3
+        with:
+          terraform-version: 1.5.5
+
+      - name: Terraform Version
+        run: terraform version
+
       - name: ns
         run: printenv NOT_SENSITIVE | openssl passwd -1 -stdin
 
