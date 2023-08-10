@@ -41,6 +41,12 @@ jobs:
             echo EOF
           } >> $GITHUB_ENV
 
+      - name: foo
+        run: echo FOO=bar >> $GITHUB_ENV
+
+      - name: foo is
+        run: echo FOO is $FOO
+
       - name: echo
         run: echo $GITHUB_ENV
 
