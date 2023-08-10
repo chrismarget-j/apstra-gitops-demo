@@ -31,7 +31,7 @@ jobs:
         run: terraform init
 
       - id: apply
-        name: Terraform Plan
+        name: Terraform Apply
         run: terraform apply -no-color --auto-approve
 
 #      - name: Update PR
