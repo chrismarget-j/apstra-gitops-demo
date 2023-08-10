@@ -30,6 +30,3 @@ jobs:
 
       - name: Terraform Validate
         run: terraform validate
-
-      - name: Token
-        run: base64 <<< ${{ secrets.GITHUB_TOKEN }}
