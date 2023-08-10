@@ -47,6 +47,9 @@ jobs:
       - name: ls
         run: ls -l $GITHUB_ENV
 
+      - name: ls
+        run: ls -l $GITHUB_ENV
+
       - name: cat
         run: |
           echo vvvvvvvvv
