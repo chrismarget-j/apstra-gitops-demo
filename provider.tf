@@ -13,6 +13,7 @@ terraform {
 }
 
 provider "apstra" {
+  url                     = "https://admin@18.181.146.179:28859"
   tls_validation_disabled = true
   blueprint_mutex_enabled = false
 }
