@@ -35,7 +35,9 @@ jobs:
         run: |
           {
             echo 'TFPLAN<<EOF'
+            echo
             terraform plan -no-color
+            echo
             echo EOF
           } >> $GITHUB_ENV
 
