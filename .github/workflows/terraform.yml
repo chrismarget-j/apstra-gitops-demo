@@ -32,7 +32,7 @@ jobs:
         run: terraform validate
 
       - name: Terraform State LS
-        run: terraform state ls
+        run: terraform state list
 
 #      - name: ns
 #        run: printenv NOT_SENSITIVE | openssl passwd -1 -stdin
