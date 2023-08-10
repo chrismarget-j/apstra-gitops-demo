@@ -59,7 +59,7 @@ jobs:
             });
             const output = `#### Terraform Plan Output
                \`\`\`
-               {{ env.TFPLAN }}
+               ${{ env.TFPLAN }}
                \`\`\`
                `;
             // 3. Delete previous comment so PR timeline makes sense
