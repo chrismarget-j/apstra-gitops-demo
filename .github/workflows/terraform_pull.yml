@@ -35,9 +35,6 @@ jobs:
         name: Terraform Plan
         run: terraform plan -no-color
 
-      - name: Terraform Plan Output
-        run: echo ${{ steps.plan.outputs.stdout }}
-
       - name: Update PR
         uses: actions/github-script@v6
         id: plan-comment
