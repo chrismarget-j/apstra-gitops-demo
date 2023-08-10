@@ -1,0 +1,66 @@
+name: "Terraform Merge Actions"
+
+on:
+  pull_request:
+
+env:
+  AWS_ACCESS_KEY_ID: "${{ secrets.AWS_ACCESS_KEY_ID }}"
+  AWS_SECRET_ACCESS_KEY: "${{ secrets.AWS_SECRET_ACCESS_KEY }}"
+  APSTRA_PASS: "${{ secrets.APSTRA_PASS }}"
+  NOT_SENSITIVE: "${{ secrets.NOT_SENSITIVE }}"
+
+jobs:
+  terraform:
+    name: "Terraform Merge"
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@633666f66e0061ca3b725c73b2ec20cd13a8fdd1 # v2.0.3
+        with:
+          terraform_version: 1.5.5
+
+      - name: Terraform Init
+        run: terraform init
+
+      - id: apply
+        name: Terraform Plan
+        run: terraform apply -no-color --auto-approve
+
+#      - name: Update PR
+#        uses: actions/github-script@v6
+#        id: plan-comment
+#        with:
+#          github-token: ${{ secrets.GITHUB_TOKEN }}
+#          script: |
+#            const { data: comments } = await github.rest.issues.listComments({
+#              owner: context.repo.owner,
+#              repo: context.repo.repo,
+#              issue_number: context.issue.number,
+#            });
+#            const botComment = comments.find(comment => {
+#              return comment.user.type === 'Bot' && comment.body.includes('Terraform Plan Output')
+#            });
+#            const output = `#### Terraform Plan Output
+#               \`\`\`
+#               ${{ steps.plan.outputs.stdout }}
+#               \`\`\`
+#               `;
+#            if (botComment) {
+#              github.rest.issues.deleteComment({
+#                owner: context.repo.owner,
+#                repo: context.repo.repo,
+#                comment_id: botComment.id,
+#              });
+#            }
+#            github.rest.issues.createComment({
+#              issue_number: context.issue.number,
+#              owner: context.repo.owner,
+#              repo: context.repo.repo,
+#              body: output
+#            });
