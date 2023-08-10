@@ -1,4 +1,4 @@
-name: "Terraform Plan"
+name: "Terraform Validate"
 
 on:
   push:
@@ -25,11 +25,17 @@ jobs:
         with:
           terraform-version: 1.5.5
 
-      - name: Terraform Version
-        run: terraform version
+      - name: Terraform Init
+        run: terraform init
 
-      - name: ns
-        run: printenv NOT_SENSITIVE | openssl passwd -1 -stdin
+      - name: Terraform Validate
+        run: terraform validate
+
+      - name: Terraform State LS
+        run: terraform state ls
+
+#      - name: ns
+#        run: printenv NOT_SENSITIVE | openssl passwd -1 -stdin
 
 
 #      - name: Upload Configuration
