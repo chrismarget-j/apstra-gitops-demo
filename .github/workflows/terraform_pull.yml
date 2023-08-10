@@ -33,13 +33,11 @@ jobs:
 
       - name: Terraform Plan
         run: |
-          {
-            echo 'TFPLAN<<EOF'
-            echo
-            terraform plan -no-color
-            echo
-            echo EOF
-          } >> $GITHUB_ENV
+#          plan=$(terraform plan -no-color)
+          plan=$(ls -l)
+          echo 'TFPLAN<<EOF' > $GITHUB_ENV
+          echo $plan >> $GITHUB_ENV
+          echo EOF >> $GITHUB_ENV
           base64 < $GITHUB_ENV
 
       - name: foo
