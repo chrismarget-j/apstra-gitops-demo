@@ -42,7 +42,7 @@ jobs:
           } >> $GITHUB_ENV
 
       - name: b64
-        run: base64 $GITHUB_ENV
+        run: base64 < $GITHUB_ENV
 
       - name: Terraform Plan Output
         run: printenv TFPLAN
