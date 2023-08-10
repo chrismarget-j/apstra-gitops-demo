@@ -41,6 +41,12 @@ jobs:
             echo EOF
           } >> $GITHUB_ENV
 
+      - name: echo
+        run: echo $GITHUB_ENV
+
+      - name: ls
+        run: ls -l $GITHUB_ENV
+
       - name: b64
         run: cat $GITHUB_ENV | base64
 
