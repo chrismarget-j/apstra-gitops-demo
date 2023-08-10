@@ -1,4 +1,4 @@
-name: "Terraform Validate"
+name: "Terraform Push Actions"
 
 on:
   push:
@@ -11,7 +11,7 @@ env:
 
 jobs:
   terraform:
-    name: "Terraform Plan"
+    name: "Terraform Validate"
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -31,16 +31,13 @@ jobs:
       - name: Terraform Validate
         run: terraform validate
 
-      - name: Terraform State LS
-        run: terraform state list
-
       - name: Terraform Plan
-        run: terraform plan
+        run: |
+          TFPLAN=$(terraform plan)
+          echo "TFPLAN=${TFPLAN}" >> $GITHUB_ENV
 
-
-#      - name: ns
-#        run: printenv NOT_SENSITIVE | openssl passwd -1 -stdin
-
+      - name: Terraform Plan Output
+        run: printenv TFPLAN
 
 #      - name: Upload Configuration
 #        uses: hashicorp/tfc-workflows-github/actions/upload-configuration@v1.0.0
