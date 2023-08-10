@@ -33,8 +33,7 @@ jobs:
 
       - name: Terraform Plan
         run: |
-          TFPLAN=$(terraform plan)
-          echo "TFPLAN=${TFPLAN}" >> $GITHUB_ENV
+          { terraform plan } >> $GITHUB_ENV
 
       - name: Terraform Plan Output
         run: printenv TFPLAN
