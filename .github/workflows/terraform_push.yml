@@ -3,6 +3,7 @@ name: "Terraform Push Actions"
 on:
   push:
     branches:
+      - '*'
       - '!main'
 
 env:
