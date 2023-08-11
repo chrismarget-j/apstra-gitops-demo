@@ -1,6 +1,6 @@
 // the initial fabric construction happens in here
 module "fabric" {
-  source = "./fabric"
+  source = "./_fabric"
 }
 
 // the null resource "disappears", forcing replacement whenever a
@@ -23,7 +23,7 @@ resource "apstra_blueprint_deployment" "dc_1" {
 }
 
 module "vpn_routing" {
-  source               = "./vpn_routing"
+  source               = "./_vpn_routing"
   blueprint_id         = module.fabric.blueprint_id
   routing_zone_id      = module.fabric.routing_zone_id
   vpn_edge_router_ip   = local.vpn_edge_router_ip
