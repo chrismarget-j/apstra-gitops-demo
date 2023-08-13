@@ -7,7 +7,7 @@ terraform {
   }
   backend "s3" {
     bucket = "inform-demo"
-    key    = "inform-demo/terraform.tfstate"
+    key    = "fabric/terraform.tfstate"
     region = "us-east-1"
   }
 }
