@@ -10,7 +10,7 @@ resource "null_resource" "force_redeploy" {
   triggers = {
     // replace this resource whenever staging blueprint is revised
     fabric_staging_revision      = module.fabric.staging_revision
-    vpn_routing_staging_revision = module.vpn_routing.staging_revision
+#    vpn_routing_staging_revision = module.vpn_routing.staging_revision
   }
 }
 
@@ -19,13 +19,13 @@ resource "null_resource" "force_redeploy" {
 resource "apstra_blueprint_deployment" "dc_1" {
   blueprint_id = module.fabric.blueprint_id
   comment      = "Deployment by Terraform {{.TerraformVersion}}, Apstra provider {{.ProviderVersion}}, User $USER."
-  depends_on   = [module.fabric, module.vpn_routing, null_resource.force_redeploy]
+#  depends_on   = [module.fabric, module.vpn_routing, null_resource.force_redeploy]
 }
 
-module "vpn_routing" {
-  source               = "./_vpn_routing"
-  blueprint_id         = module.fabric.blueprint_id
-  routing_zone_id      = module.fabric.routing_zone_id
-  vpn_edge_router_ip   = local.vpn_edge_router_ip
-  vpn_routing_policies = local.vpn_routing_policies
-}
+#module "vpn_routing" {
+#  source               = "./_vpn_routing"
+#  blueprint_id         = module.fabric.blueprint_id
+#  routing_zone_id      = module.fabric.routing_zone_id
+#  vpn_edge_router_ip   = local.vpn_edge_router_ip
+#  vpn_routing_policies = local.vpn_routing_policies
+#}
