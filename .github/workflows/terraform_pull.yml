@@ -29,14 +29,14 @@ jobs:
           terraform_version: 1.5.5
 
       - name: Terraform Init
-        run: terraform init
+        run: cd vpn && terraform init
 
       - name: Terraform Validate
-        run: terraform validate
+        run: cd vpn && terraform validate
 
       - id: plan
         name: Terraform Plan
-        run: terraform plan -no-color
+        run: cd vpn && terraform plan -no-color
 
       - name: Update PR
         uses: actions/github-script@v6
