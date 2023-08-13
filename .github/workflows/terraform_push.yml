@@ -33,4 +33,4 @@ jobs:
         run: cd vpn && terraform init
 
       - name: Terraform Validate
-        run: terraform validate
+        run: cd vpn && terraform validate
