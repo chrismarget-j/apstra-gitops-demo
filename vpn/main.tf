@@ -5,3 +5,14 @@ module "vpn_routing" {
   vpn_edge_router_ip   = local.vpn_edge_router_ip
   vpn_routing_policies = local.vpn_routing_policies
 }
+
+resource "null_resource" "force_redeploy" {
+  depends_on = [module.vpn_routing]
+  triggers   = { fabric_staging_revision = module.vpn_routing.staging_revision }
+}
+
+resource "apstra_blueprint_deployment" "dc_1" {
+  blueprint_id = data.terraform_remote_state.fabric.outputs.blueprint_id
+  comment      = "Deployment by Terraform {{.TerraformVersion}}, Apstra provider {{.ProviderVersion}}, User $USER."
+  depends_on   = [null_resource.force_redeploy]
+}
