@@ -34,5 +34,6 @@ jobs:
       - id: apply
         name: Terraform Apply
         run: |
-          cd vpn && terraform apply -no-color --auto-approve
-          cd vpn && terraform apply -no-color --auto-approve
+          cd vpn
+          terraform apply -no-color --auto-approve
+          terraform apply -no-color --auto-approve
