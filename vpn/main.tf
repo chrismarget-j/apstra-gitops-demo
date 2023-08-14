@@ -13,6 +13,6 @@ resource "null_resource" "force_redeploy" {
 
 resource "apstra_blueprint_deployment" "dc_1" {
   blueprint_id = data.terraform_remote_state.fabric.outputs.blueprint_id
-  comment      = "$COMMENT"
+  comment      = "$COMMENT Terraform {{.TerraformVersion}}, provider {{.ProviderVersion}}"
   depends_on   = [null_resource.force_redeploy]
 }
