@@ -44,11 +44,6 @@ jobs:
             }
           result-encoding: string
 
-      - name: noise
-        run: echo '${{steps.get_issue_number.outputs.result}}'
-#        run: cat $GITHUB_EVENT_PATH
-#        run: curl -s -H "Accept: application/vnd.github.groot-preview+json" https://api.github.com/repos/chrismarget-j/apstra-gitops-demo/commits/fb4477fa762eaef76b9e1508c7f6d58dd9176c94/pulls
-
       - name: Set up Terraform
         uses: hashicorp/setup-terraform@633666f66e0061ca3b725c73b2ec20cd13a8fdd1 # v2.0.3
         with:
@@ -61,6 +56,6 @@ jobs:
         name: Terraform Apply
         run: |
           cd vpn
-          export COMMENT="PR #$PR_NUMBER Merged by $GITHUB_TRIGGERING_ACTOR"
+          export COMMENT="PR #${{steps.get_issue_number.outputs.result}} Merged by $GITHUB_TRIGGERING_ACTOR"
           terraform apply -no-color --auto-approve
           terraform apply -no-color --auto-approve
