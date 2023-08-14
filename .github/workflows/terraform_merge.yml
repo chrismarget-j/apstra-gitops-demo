@@ -11,7 +11,6 @@ env:
   APSTRA_PASS: "${{ secrets.APSTRA_PASS }}"
   AWS_ACCESS_KEY_ID: "${{ secrets.AWS_ACCESS_KEY_ID }}"
   AWS_SECRET_ACCESS_KEY: "${{ secrets.AWS_SECRET_ACCESS_KEY }}"
-  COMMENT: "PR #${{ github.event.pull_request.number }} Merged by $GITHUB_TRIGGERING_ACTOR"
 
 jobs:
   terraform:
@@ -39,5 +38,6 @@ jobs:
         name: Terraform Apply
         run: |
           cd vpn
+          export COMMENT="PR #${{ github.event.pull_request.number }} Merged by $GITHUB_TRIGGERING_ACTOR"
           terraform apply -no-color --auto-approve
           terraform apply -no-color --auto-approve
