@@ -11,7 +11,7 @@ env:
   APSTRA_PASS: "${{ secrets.APSTRA_PASS }}"
   AWS_ACCESS_KEY_ID: "${{ secrets.AWS_ACCESS_KEY_ID }}"
   AWS_SECRET_ACCESS_KEY: "${{ secrets.AWS_SECRET_ACCESS_KEY }}"
-  COMMENT: "PR #${{ github.event.pull_request.number }} Merged by ${{ GITHUB_TRIGGERING_ACTOR }}"
+  COMMENT: "PR #${{ github.event.pull_request.number }} Merged by GITHUB_TRIGGERING_ACTOR"
 
 jobs:
   terraform:
