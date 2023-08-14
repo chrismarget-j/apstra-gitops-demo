@@ -12,6 +12,7 @@ env:
   AWS_ACCESS_KEY_ID: "${{ secrets.AWS_ACCESS_KEY_ID }}"
   AWS_SECRET_ACCESS_KEY: "${{ secrets.AWS_SECRET_ACCESS_KEY }}"
   COMMENT: "PR #${{ github.event.pull_request.number }}, Terraform {{.TerraformVersion}}, provider {{.ProviderVersion}},"
+  GITHUB_REF: "{{ GITHUB_REF }}"
 
 jobs:
   terraform:
