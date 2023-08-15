@@ -1,5 +1,4 @@
 locals {
-  vpn_edge_router_ip = "192.168.5.5"
   vpn_routing_policies = {
     "Vendor_A" = {
       import = ["172.16.0.0/24"]
