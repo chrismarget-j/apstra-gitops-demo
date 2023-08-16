@@ -1,7 +1,7 @@
 locals {
   vpn_routing_policies = {
     "Vendor_A" = {
-      import = ["172.16.0.0/24"]
+      import = ["172.16.0.0/23"]
       export = ["10.5.16.0/24", "10.5.18.0/24"]
     }
     "Vendor_B" = {
