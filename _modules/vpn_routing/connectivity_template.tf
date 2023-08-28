@@ -1,17 +1,17 @@
 data "apstra_datacenter_ct_routing_policy" "vpn" {
   for_each          = apstra_datacenter_routing_policy.vpn
-  label             = each.key
+  name              = each.key
   routing_policy_id = each.value.id
 }
 
 data "apstra_datacenter_ct_bgp_peering_ip_endpoint" "vpn" {
-  label            = "BGP peering with VPN router"
+  name             = "BGP peering with VPN router"
   ipv4_address     = var.vpn_edge_router_ip
   child_primitives = [for k, v in data.apstra_datacenter_ct_routing_policy.vpn : v.primitive]
 }
 
 data "apstra_datacenter_ct_ip_link" "vpn" {
-  label                = "IP handoff to VPN router"
+  name                 = "IP handoff to VPN router"
   routing_zone_id      = var.routing_zone_id
   ipv4_addressing_type = "numbered"
   child_primitives     = [data.apstra_datacenter_ct_bgp_peering_ip_endpoint.vpn.primitive]
