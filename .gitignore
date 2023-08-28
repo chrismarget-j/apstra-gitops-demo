@@ -1,2 +1,3 @@
 .terraform/
-.terraform.lock.hcl
+vpn/.terraform.lock.hcl
+fabric/.terraform.lock.hcl
