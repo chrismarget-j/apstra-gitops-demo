@@ -21,18 +21,18 @@ provider "registry.terraform.io/hashicorp/null" {
 }
 
 provider "registry.terraform.io/juniper/apstra" {
-  version     = "0.27.2"
-  constraints = "0.27.2"
+  version     = "0.35.0"
+  constraints = "0.35.0"
   hashes = [
-    "h1:by/CjJEN3Af1JFepiG55qoXlKsUdzS5xTvH9//acPMs=",
-    "zh:07975634f79a093a1df9651c2ab73064bea3ba24e6c7039e0b67177981016749",
-    "zh:7a94c596801312712307484230c5faf80c940bb5f9585b8366e780760894e1cd",
-    "zh:9a76081db1cf334fc4a11cc70c048e9ea63a11e2c6a2151e5b3faa405abe908d",
-    "zh:9e1c0e66377b9f512d7796d9691c5be683e1b64130bccc4558ba931c3d2035fa",
-    "zh:9f699bc6e431a863834e56411f69a6faeccef6bc64c51ce36d13896c84063df2",
-    "zh:aeeccb41d29f53c22eb8e781a3d25df0e8c1739e08f6a089092e8dd91e0c2335",
-    "zh:cce0e09edd0c6c6593be20c2a4aeadd22073d80f39440c61f7228d2e07d61a51",
-    "zh:e6882fe677cf15bce893f1fcd1996bc193d5509970ecb0a42700b8c3cf31494c",
+    "h1:6k67OMH8sJ9vfaDaPAA80KzEJV8MDtkCikayzpnohZA=",
+    "zh:037758c6805ae0b445155822988aa64d71caaa09ead0283b491c9a9d95587df5",
+    "zh:28222bcc648e78dbb24156ea5619653eefaea44b1a7b6d9c9ec885f7ec5e55e9",
+    "zh:5483f441cad6f694e0e97458bcae152a380937e8e490ddaf71ac78b4c54e1914",
+    "zh:65bd9bb93bde9a8fb0513e909265aa58a1132c229fe313179c3890d9cc538e4c",
+    "zh:9d913e6daf6a580574b5b1cd72c6864e86bee07a682c2ff1b18efc7f9cf2798d",
+    "zh:b3b403da491eba6ab7e0bf5590af4cc74862d38a6af8790fe9d222355c4b2d70",
+    "zh:ba9164032137877d97bd484c72be3e95adfca486ecb8c337144b4eb7688ebc8a",
+    "zh:ebc3a952e17a8e38633ea01abbd933cef3401d48ae666d25718b317b675fe507",
     "zh:f809ab383cca0a5f83072981c64208cbd7fa67e986a86ee02dd2c82333221e32",
   ]
 }
