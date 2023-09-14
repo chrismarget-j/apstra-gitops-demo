@@ -1,6 +1,6 @@
 data "apstra_datacenter_ct_routing_policy" "vpn" {
   for_each          = apstra_datacenter_routing_policy.vpn
-  name              = each.key
+  name              = "${replace(each.key, "_", " ")} Routing Policy"
   routing_policy_id = each.value.id
 }
 
