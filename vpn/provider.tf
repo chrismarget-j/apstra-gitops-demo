@@ -2,7 +2,7 @@ terraform {
   required_providers {
     apstra = {
       source  = "Juniper/apstra"
-      version = "0.35.0"
+      version = "0.53.2"
     }
   }
   backend "s3" {
