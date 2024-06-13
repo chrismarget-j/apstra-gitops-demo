@@ -2,7 +2,7 @@ terraform {
   required_providers {
     apstra = {
       source  = "Juniper/apstra"
-      version = "0.53.2"
+      version = "0.58.2"
     }
   }
   backend "s3" {
@@ -13,7 +13,7 @@ terraform {
 }
 
 provider "apstra" {
-  tls_validation_disabled = true
+#  tls_validation_disabled = true
   blueprint_mutex_enabled = false
   api_timeout             = 0
 }
