@@ -13,7 +13,8 @@ terraform {
 }
 
 provider "apstra" {
-#  tls_validation_disabled = true
+  # tls_validation_disabled = true
   blueprint_mutex_enabled = false
   api_timeout             = 0
+  experimental            = true
 }
