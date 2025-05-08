@@ -1,23 +1,4 @@
-data "apstra_datacenter_ct_routing_policy" "vpn" {
-  for_each          = apstra_datacenter_routing_policy.vpn
-  name              = "${replace(each.key, "_", " ")} Routing Policy"
-  routing_policy_id = each.value.id
-}
-
-data "apstra_datacenter_ct_bgp_peering_ip_endpoint" "vpn" {
-  name             = "BGP peering with VPN router"
-  ipv4_address     = var.vpn_edge_router_ip
-  child_primitives = [for k, v in data.apstra_datacenter_ct_routing_policy.vpn : v.primitive]
-}
-
-data "apstra_datacenter_ct_ip_link" "vpn" {
-  name                 = "IP handoff to VPN router"
-  routing_zone_id      = var.routing_zone_id
-  ipv4_addressing_type = "numbered"
-  child_primitives     = [data.apstra_datacenter_ct_bgp_peering_ip_endpoint.vpn.primitive]
-}
-
-resource "apstra_datacenter_connectivity_template" "vpn" {
+resource "apstra_datacenter_connectivity_template_interface" "vpn" {
   blueprint_id = var.blueprint_id
   name         = "IP+BGP handoff to VPN block"
   description  = "includes routing policies for [${join(", ", [for k, v in apstra_datacenter_routing_policy.vpn : k])}]"
@@ -25,7 +6,22 @@ resource "apstra_datacenter_connectivity_template" "vpn" {
     "test",
     "terraform",
   ]
-  primitives = [
-    data.apstra_datacenter_ct_ip_link.vpn.primitive
-  ]
+  ip_links = {
+    "IP handoff to VPN router" = {
+      routing_zone_id      = var.routing_zone_id
+      ipv4_addressing_type = "numbered"
+      ipv6_addressing_type = "none"
+      bgp_peering_ip_endpoints = {
+        "BGP peering with VPN router" = {
+          bfd_enabled  = false
+          ipv4_address = var.vpn_edge_router_ip
+          routing_policies = {
+            for k, v in apstra_datacenter_routing_policy.vpn : k => {
+              routing_policy_id = v.id
+            }
+          }
+        }
+      }
+    }
+  }
 }
