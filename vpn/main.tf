@@ -3,7 +3,7 @@ module "vpn_routing" {
   blueprint_id         = data.terraform_remote_state.fabric.outputs.blueprint_id
   routing_zone_id      = data.terraform_remote_state.fabric.outputs.routing_zone_id
   vpn_edge_router_ip   = "192.168.5.5"
-  vpn_routing_policies = local.vpn_routing_policies
+  vpn_routing_policies = yamldecode(file("${path.module}/partner_routes.yml"))
 }
 
 resource "null_resource" "force_redeploy" {
